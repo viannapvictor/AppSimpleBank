@@ -1,15 +1,39 @@
 package br.edu.infnet.AppSimpleBank.domain.user;
 
+import br.edu.infnet.AppSimpleBank.utils.exceptions.InvalidValueException;
+import br.edu.infnet.AppSimpleBank.utils.exceptions.NullOrEmptyException;
+
 public class User {
 
     private int id;
     private String firstName;
-    private String lastNam;
+    private String lastName;
     private String document;
     private String email;
     private String password;
     private double balance;
     private UserTypeEnum userType;
+
+    public User(int id, String firstName, String lastName,
+            String document, String password,
+            String email, double balance, UserTypeEnum userType)
+            throws NullOrEmptyException, InvalidValueException {
+
+        setId(id);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setDocument(document);
+        setEmail(email);
+        setPassword(password);
+        setBalance(balance);
+
+        if (userType != null && !userType.getUserType().isBlank() && !userType.getUserType().isEmpty())
+            this.userType = userType;
+        else {
+            throw new NullOrEmptyException("Valores nulos ou vazio não são aceitos");
+        }
+
+    }
 
     public int getId() {
         return id;
@@ -27,12 +51,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastNam() {
-        return lastNam;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastNam(String lastNam) {
-        this.lastNam = lastNam;
+    public void setLastName(String lastNam) {
+        this.lastName = lastNam;
     }
 
     public String getDocument() {
@@ -63,15 +87,20 @@ public class User {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setBalance(double balance) throws InvalidValueException {
+        if (balance >= 0.0)
+            this.balance = balance;
+        else {
+            throw new InvalidValueException("Não existem valores negativos para o aluguel.");
+        }
     }
 
     public UserTypeEnum getUserType() {
         return userType;
     }
 
-    public void setUserType(UserTypeEnum userType) {
-        this.userType = userType;
+    @Override
+    public String toString() {
+        return "firstName: " + firstName + ", document: " + document + " email " + email;
     }
 }

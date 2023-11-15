@@ -1,7 +1,7 @@
 package br.edu.infnet.AppSimpleBank.domain.user;
 
 public enum UserTypeEnum {
-    Client ("Cliente"),
+    CLIENT ("Cliente"),
     MERCHANT ("Lojista");
 
     private final String userType;
