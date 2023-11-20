@@ -1,7 +1,11 @@
 package br.edu.infnet.AppSimpleBank.domain.user;
 
+import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.InvalidValueException;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.NullOrEmptyException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -14,9 +18,15 @@ public class User {
     private double balance;
     private UserTypeEnum userType;
 
+    private List<Transaction> transactionList = new ArrayList<>();
+
+    public User() {
+
+    }
+
     public User(int id, String firstName, String lastName,
-            String document, String password,
-            String email, double balance, UserTypeEnum userType)
+                String document, String password,
+                String email, double balance, UserTypeEnum userType)
             throws NullOrEmptyException, InvalidValueException {
 
         setId(id);
@@ -95,12 +105,18 @@ public class User {
         }
     }
 
-    public UserTypeEnum getUserType() {
-        return userType;
+    public List<Transaction> getTransactionList() {
+        return transactionList;
     }
+    public void addTransactionList(Transaction transaction) {
+        transactionList.add(transaction);
+    }
+
 
     @Override
     public String toString() {
-        return "firstName: " + firstName + ", document: " + document + " email " + email;
+        return String.format("Tipo de conta: %s\nNome: %s %s\nDocument: %sz\nEmail: %s", userType, firstName, lastName ,document, email)
+                + String.format("\nInformações de conta: %.2f\n", balance)
+                ;
     }
 }

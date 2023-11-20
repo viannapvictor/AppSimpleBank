@@ -9,9 +9,14 @@ public class Transaction {
     private double amount;
     private User sender;
     private User receiver;
-    private String password;
     private LocalDateTime transactionDate;
-
+    public Transaction (int id, double amount, User sender, User receiver, LocalDateTime transactionDate) {
+        setId(id);
+        setAmount(amount);
+        setSender(sender);
+        setReceiver(receiver);
+        setTransactionDate(transactionDate);
+    }
     public int getId() {
         return id;
     }
@@ -44,19 +49,17 @@ public class Transaction {
         this.receiver = receiver;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public LocalDateTime getTransactionDate() {
         return transactionDate;
     }
 
     public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[Transações]\nBeneficiado: %s\nBeneficiário: %s\nValor: %.2f\nData: %s\n",
+                receiver.getFirstName(), sender.getFirstName(), amount, transactionDate);
     }
 }
