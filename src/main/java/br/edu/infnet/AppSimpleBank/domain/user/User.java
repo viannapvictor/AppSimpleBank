@@ -3,10 +3,14 @@ package br.edu.infnet.AppSimpleBank.domain.user;
 import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.InvalidValueException;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.NullOrEmptyException;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class User {
 
     private int id;
@@ -45,68 +49,12 @@ public class User {
 
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastNam) {
-        this.lastName = lastNam;
-    }
-
-    public String getDocument() {
-        return document;
-    }
-
-    public void setDocument(String document) {
-        this.document = document;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
     public void setBalance(double balance) throws InvalidValueException {
         if (balance >= 0.0)
             this.balance = balance;
         else {
             throw new InvalidValueException("Não existem valores negativos para o aluguel.");
         }
-    }
-
-    public List<Transaction> getTransactionList() {
-        return transactionList;
     }
     public void addTransactionList(Transaction transaction) {
         transactionList.add(transaction);

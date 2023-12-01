@@ -1,5 +1,8 @@
 package br.edu.infnet.AppSimpleBank.domain.user;
 
+import lombok.Getter;
+
+@Getter
 public enum UserTypeEnum {
     CLIENT ("Cliente"),
     MERCHANT ("Lojista");
@@ -8,11 +11,6 @@ public enum UserTypeEnum {
     UserTypeEnum(String userType) {
         this.userType = userType;
     }
-
-    public String getUserType () {
-        return userType;
-    }
-
     @Override
     public String toString() {
         return getUserType();
