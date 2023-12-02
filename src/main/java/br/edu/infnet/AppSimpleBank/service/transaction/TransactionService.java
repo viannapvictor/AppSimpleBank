@@ -4,6 +4,7 @@ import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,8 @@ public class TransactionService {
         transactionMap.put(transaction.getId(),transaction);
     }
 
-    public List<Transaction> getAll() {
-        return transactionMap.values().stream().toList();
+    public Collection<Transaction> getAll() {
+        return transactionMap.values();
     }
 
 }

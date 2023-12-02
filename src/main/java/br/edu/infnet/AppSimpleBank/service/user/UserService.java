@@ -3,10 +3,7 @@ package br.edu.infnet.AppSimpleBank.service.user;
 import br.edu.infnet.AppSimpleBank.domain.user.User;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -17,8 +14,8 @@ public class UserService {
         userMap.put(user.getId(),user);
     }
 
-    public List<User> getAll() {
-        return userMap.values().stream().toList();
+    public Collection<User> getAll() {
+        return userMap.values();
     }
 
     public User findUserById(int id) {
