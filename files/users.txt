@@ -1,3 +1,4 @@
 1;Victor;Vianna;12345678912;123456789;victor@email.com;295.8;CLIENT
 2;Joao;Vianna;12345678913;12345987;joao@email.com;5700.00;MERCHANT
 3;Lucas;Aragorn;12345678914;123456645;lucas@email.com;1578.63;CLIENT
+4;Sergio;Maraponga;1234567888;124567899;sergio@email.com;9500;MERCHANT

@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,10 +35,6 @@ public class User {
 
     public User() {
 
-    }
-
-    public User(int id) {
-        setId(id);
     }
 
     public User(int id, String firstName, String lastName,

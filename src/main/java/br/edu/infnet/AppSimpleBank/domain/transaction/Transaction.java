@@ -35,7 +35,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("[Transações]\nBeneficiado: %s\nBeneficiário: %s\nValor: %.2f\n" +
+        return String.format("[Transações]\nBeneficiado:\n%s\nBeneficiário:\n%s\nValor: %.2f\n" +
                         "Data: %s\n", receiver, sender, amount, transactionDate);
     }
 }
