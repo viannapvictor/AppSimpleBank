@@ -49,8 +49,8 @@ public class UserLoader implements ApplicationRunner {
 
             }
 
-            for (User user : userService.getAll()) {
-                System.out.println(user);
+            for (User users : userService.getAll()) {
+                System.out.println(users);
             }
 
             read.close();

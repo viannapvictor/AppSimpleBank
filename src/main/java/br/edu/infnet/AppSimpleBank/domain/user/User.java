@@ -33,9 +33,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserTypeEnum userType;
 
-    @Transient
-    private List<Transaction> transactionList = new ArrayList<>();
-
     public User() {
 
     }
@@ -72,10 +69,6 @@ public class User {
             throw new InvalidValueException("Não existem valores negativos para o aluguel.");
         }
     }
-    public void addTransactionList(Transaction transaction) {
-        transactionList.add(transaction);
-    }
-
 
     @Override
     public String toString() {
