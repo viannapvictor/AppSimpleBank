@@ -1,26 +1,28 @@
 package br.edu.infnet.AppSimpleBank.service.user;
 
 import br.edu.infnet.AppSimpleBank.domain.user.User;
+import br.edu.infnet.AppSimpleBank.repositories.UserRespository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class UserService {
-
-    private Map<Integer, User> userMap = new HashMap<Integer, User>();
+    @Autowired
+    private UserRespository userRespository;
 
     public void addUser(User user) {
-        userMap.put(user.getId(),user);
+        userRespository.save(user);
     }
 
     public Collection<User> getAll() {
-        return userMap.values();
+        return (Collection<User>) userRespository.findAll();
     }
 
     public User findUserById(int id) {
         User selectedUser = null;
-        for (User user : userMap.values()) {
+        for (User user : getAll()) {
             if (user.getId() == id) {
                 selectedUser = user;
             }

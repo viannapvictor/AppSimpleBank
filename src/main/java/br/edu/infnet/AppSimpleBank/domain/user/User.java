@@ -3,29 +3,45 @@ package br.edu.infnet.AppSimpleBank.domain.user;
 import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.InvalidValueException;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.NullOrEmptyException;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@Entity
+@Table(name = "TB_USER")
+@EqualsAndHashCode(of="id")
 public class User {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String document;
+    @Column(unique = true)
     private String email;
     private String password;
     private double balance;
+    @Enumerated(EnumType.STRING)
     private UserTypeEnum userType;
 
+    @Transient
     private List<Transaction> transactionList = new ArrayList<>();
 
     public User() {
 
+    }
+
+    public User(int id) {
+        setId(id);
     }
 
     public User(int id, String firstName, String lastName,

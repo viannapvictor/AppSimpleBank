@@ -1,5 +1,6 @@
 package br.edu.infnet.AppSimpleBank;
 
+import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.domain.user.User;
 import br.edu.infnet.AppSimpleBank.domain.user.UserTypeEnum;
 import br.edu.infnet.AppSimpleBank.service.user.UserService;
@@ -46,6 +47,10 @@ public class UserLoader implements ApplicationRunner {
 
                 line = read.readLine();
 
+            }
+
+            for (User user : userService.getAll()) {
+                System.out.println(user);
             }
 
             read.close();

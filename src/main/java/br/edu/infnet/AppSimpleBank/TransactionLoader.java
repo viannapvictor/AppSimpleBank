@@ -54,23 +54,13 @@ public class TransactionLoader implements ApplicationRunner {
             for (Transaction transaction : transactionService.getAll()) {
                 User user = new User();
                 user.addTransactionList(transaction);
-                for (User users : userService.getAll()) {
-                    if (users.getId() == transaction.getSender().getId()) {
-                        System.out.println("Clientes comum:\n");
-                        System.out.println(users);
-                        System.out.println(transaction);
-                    } else if (users.getId() == transaction.getReceiver().getId()) {
-                        System.out.println("Clientes Lojistas:\n");
-                        System.out.println(users);
-                        System.out.println(transaction);
-                    }
-                }
+                System.out.println(transaction);
             }
 
             read.close();
 
-        } catch (Exception fr) {
-            throw new FileException("Impossível de ler o arquivo!");
+        } catch (Exception e) {
+            e.getMessage();
         }
 
     }
