@@ -15,18 +15,23 @@ import java.time.LocalDateTime;
 @Table(name="TB_TRANSACTIONS")
 @AllArgsConstructor
 @EqualsAndHashCode(of="id")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double amount;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "idSender")
     private User sender;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "idReceiver")
     private User receiver;
     private LocalDateTime transactionDate;
+
+    public Transaction() {
+
+    }
 
     @Override
     public String toString() {

@@ -52,8 +52,6 @@ public class TransactionLoader implements ApplicationRunner {
             }
 
             for (Transaction transaction : transactionService.getAll()) {
-                User user = new User();
-                user.addTransactionList(transaction);
                 System.out.println(transaction);
             }
 
