@@ -22,4 +22,8 @@ public class TransactionService {
         return (Collection<Transaction>) transactionRepository.findAll();
     }
 
+    public void delete (Integer id) {
+        transactionRepository.deleteById(id);
+    }
+
 }

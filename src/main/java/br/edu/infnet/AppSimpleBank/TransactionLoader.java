@@ -57,8 +57,8 @@ public class TransactionLoader implements ApplicationRunner {
 
             read.close();
 
-        } catch (Exception e) {
-            e.getMessage();
+        } catch (Exception fr) {
+            throw new FileException("Impossível de ler o arquivo!");
         }
 
     }
