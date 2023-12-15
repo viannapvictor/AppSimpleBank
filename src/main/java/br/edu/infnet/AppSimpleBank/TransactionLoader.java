@@ -53,7 +53,10 @@ public class TransactionLoader implements ApplicationRunner {
 
             for (Transaction transaction : transactionService.getAll()) {
                 System.out.println(transaction);
+                System.out.println("Tamanho das listas de Lojistas: "+ transaction.getReceiver().getTransactionReceiverList().size());
+                System.out.println("\nTamanho das listas de Clientes:: "+ transaction.getSender().getTransactionSenderList().size());
             }
+
 
             read.close();
 

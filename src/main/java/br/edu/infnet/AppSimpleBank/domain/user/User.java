@@ -33,6 +33,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserTypeEnum userType;
 
+    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
+    private List<Transaction> transactionSenderList;
+
+    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
+    private List<Transaction> transactionReceiverList;
+
     public User() {
 
     }
@@ -68,8 +74,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("Tipo de conta: %s\nNome: %s %s\nDocument: %sz\nEmail: %s", userType, firstName, lastName ,document, email)
-                + String.format("\nInformações de conta: %.2f\n", balance)
-                ;
+        return String.format("Tipo de conta: %s\nNome: %s %s\nDocument: %s\nEmail: %s", userType, firstName, lastName ,document, email)
+                + String.format("\nInformações de conta: %.2f\n", balance);
     }
 }
