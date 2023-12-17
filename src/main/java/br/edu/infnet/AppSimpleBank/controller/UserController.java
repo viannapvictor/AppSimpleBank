@@ -1,6 +1,5 @@
 package br.edu.infnet.AppSimpleBank.controller;
 
-import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.domain.user.User;
 import br.edu.infnet.AppSimpleBank.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,10 @@ public class UserController {
     @GetMapping(value = "/getall")
     public List<User> getAll() {
         return (List<User>) userService.getAll();
+    }
+    @GetMapping(value = "/{id}/get")
+    public User getById(@PathVariable Integer id) {
+        return userService.findUserById(id);
     }
     @PostMapping(value = "/create")
     public void create(@RequestBody User user) {
