@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -29,7 +27,7 @@ public class Transaction {
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "idReceiver")
     private User receiver;
-    private LocalDateTime transactionDate;
+    private LocalDateTime timeStamp;
 
     public Transaction() {
 
@@ -38,6 +36,6 @@ public class Transaction {
     @Override
     public String toString() {
         return String.format("[Transações]\nBeneficiado:\n%s\nBeneficiário:\n%s\nValor: %.2f\n" +
-                        "Data: %s\n", receiver, sender, amount, transactionDate);
+                        "Data: %s\n", receiver, sender, amount, timeStamp);
     }
 }

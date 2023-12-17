@@ -3,13 +3,12 @@ package br.edu.infnet.AppSimpleBank.domain.user;
 import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.InvalidValueException;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.NullOrEmptyException;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -33,10 +32,14 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserTypeEnum userType;
 
-    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idSender")
+    @JsonBackReference(value = "senderList")
     private List<Transaction> transactionSenderList;
 
-    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idReceiver")
+    @JsonBackReference(value = "receiverList")
     private List<Transaction> transactionReceiverList;
 
     public User() {
