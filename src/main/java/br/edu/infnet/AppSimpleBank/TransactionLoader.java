@@ -2,7 +2,6 @@ package br.edu.infnet.AppSimpleBank;
 
 import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.domain.user.User;
-import br.edu.infnet.AppSimpleBank.domain.user.UserTypeEnum;
 import br.edu.infnet.AppSimpleBank.service.transaction.TransactionService;
 import br.edu.infnet.AppSimpleBank.service.user.UserService;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.FileException;
@@ -54,7 +53,7 @@ public class TransactionLoader implements ApplicationRunner {
             for (Transaction transaction : transactionService.getAll()) {
                 System.out.println(transaction);
                 System.out.println("Tamanho das listas de Lojistas: "+ transaction.getReceiver().getTransactionReceiverList().size());
-                System.out.println("\nTamanho das listas de Clientes:: "+ transaction.getSender().getTransactionSenderList().size());
+                System.out.println("\nTamanho das listas de Clientes: "+ transaction.getSender().getTransactionSenderList().size());
             }
 
 
