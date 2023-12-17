@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Table(name="TB_TRANSACTIONS")
 @AllArgsConstructor
 @EqualsAndHashCode(of="id")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
