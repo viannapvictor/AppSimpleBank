@@ -1,6 +1,6 @@
 package br.edu.infnet.AppSimpleBank;
 
-import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
+import br.edu.infnet.AppSimpleBank.domain.adress.UserAdress;
 import br.edu.infnet.AppSimpleBank.domain.user.User;
 import br.edu.infnet.AppSimpleBank.domain.user.UserTypeEnum;
 import br.edu.infnet.AppSimpleBank.service.user.UserService;
@@ -13,12 +13,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
 
 @Order(1)
 @Component
 public class UserLoader implements ApplicationRunner {
+
     @Autowired
     private UserService userService;
 
@@ -36,12 +35,20 @@ public class UserLoader implements ApplicationRunner {
 
                 fields = line.split(";");
 
-                int id = Integer.parseInt(fields[0]);
+                User user = new User();
+
                 double balance = Double.parseDouble(fields[6]);
                 UserTypeEnum userType = fields[7].equalsIgnoreCase("client")
                         ? UserTypeEnum.CLIENT : UserTypeEnum.MERCHANT;
 
-                User user = new User(id, fields[1], fields[2], fields[3], fields[4], fields[5], balance, userType);
+                user.setFirstName(fields[1]);
+                user.setLastName(fields[2]);
+                user.setDocument(fields[3]);
+                user.setPassword(fields[4]);
+                user.setEmail(fields[5]);
+                user.setBalance(balance);
+                user.setUserType(userType);
+                user.setUserAdress(new UserAdress(fields[8]));
 
                 userService.addUser(user);
 

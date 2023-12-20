@@ -1,5 +1,6 @@
 package br.edu.infnet.AppSimpleBank.domain.user;
 
+import br.edu.infnet.AppSimpleBank.domain.adress.UserAdress;
 import br.edu.infnet.AppSimpleBank.domain.transaction.Transaction;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.InvalidValueException;
 import br.edu.infnet.AppSimpleBank.utils.exceptions.NullOrEmptyException;
@@ -15,7 +16,6 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "TB_USER")
-@EqualsAndHashCode(of="id")
 public class User {
 
     @Id
@@ -42,13 +42,17 @@ public class User {
     @JsonBackReference(value = "receiverList")
     private List<Transaction> transactionReceiverList;
 
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JoinColumn(name = "idAdress")
+    private UserAdress userAdress;
+
     public User() {
 
     }
 
     public User(int id, String firstName, String lastName,
                 String document, String password,
-                String email, double balance, UserTypeEnum userType)
+                String email, double balance, UserTypeEnum userType, UserAdress userAdress)
             throws NullOrEmptyException, InvalidValueException {
 
         setId(id);
@@ -58,6 +62,7 @@ public class User {
         setEmail(email);
         setPassword(password);
         setBalance(balance);
+        setUserAdress(userAdress);
 
         if (userType != null && !userType.getUserType().isBlank() && !userType.getUserType().isEmpty())
             this.userType = userType;
